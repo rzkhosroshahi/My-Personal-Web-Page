@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% include head.html %}
+</head>
+<body id="front-page">
+
+   <div class="cn-main">
+       <section id="bio">
+           <ul class="logo">
+               <li><img src="img/RZ.jpg" alt=""></li>
+               <li class="name">رضا خسروشاهی</li>
+           </ul>
+           <ul class="biography">
+               <li>طراحِ رابطِ کاربری</li>
+               <li>و توسعه دهندهِ وب.</li>
+               <li class="blog"><a href="blog">نوشته هایِ من</a></li>
+               <li class="blog"><a href="aboutme">بیشتر دربارهِ من</a></li>
+
+           </ul>
+       </section>
+   </div>
+   <footer id="footer" class="front-page-footer">
+    <div class="br"></div>
+        <ul>
+            <li><a class="tw" href="https://twitter.com/{{site.scusername}}">توییتر</a></li>
+            <li><a class="fb" href="https://instagram.com/{{site.scusername}}">اینستاگرام</a></li>
+            <li><a class="gh" href="https://github.com/{{site.scusername}}">گیت هاب</a></li>
+        </ul>
+        <div class="copy">
+            <p>&#x6F1;&#x6F3;&#x6F9;&#x6F6;-&#x6F1;&#x6F3;&#x6F9;&#x6F5;</p>
+        </div>
+   </footer>
+{% if jekyll.environment == 'production' %}
+{% include analytics.html %}
+{% endif %}
+</body>
+</html>

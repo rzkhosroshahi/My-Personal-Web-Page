@@ -1,0 +1,113 @@
+/* mixin.scss */
+
+//=========
+//Font-Face
+@font-face {
+	font-family: 'IRAN-web';
+        src: url('../fonts/IRAN_SemiBold.eot');
+
+	src: url('fonts/IRAN_SemiBold.eot?#iefix') format('eot'),  /* IE6–8 */
+url('../fonts/IRAN_SemiBold.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+url('../fonts/fonts/IRAN_SemiBold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+url('../fonts/IRAN_SemiBold.ttf') format('ttf');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'IRAN-web';
+        src: url('../fonts/IRAN.eot');
+
+	src: url('fonts/IRAN.eot?#iefix') format('eot'),  /* IE6–8 */
+url('../fonts/IRAN.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+url('../fonts/IRAN.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+url('../fonts/IRAN.ttf') format('ttf');
+	font-weight: normal;
+}
+
+
+//border radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+//mixin for supoort browsers
+@mixin prefix($declarations, $prefixes: ()) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    #{$property}: $value;
+  }
+}
+//PX to Rem calaculator
+@function pxToRem($value) {
+	@return ($value / 16 ) + rem;
+}
+
+// Class for blog main width
+@mixin main-width($media) {
+  @if $media == normal {
+    width:55%;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+  }@else if $media == wide{
+		width: 75%;
+	}
+	@else if $media == medium{
+		width: 80%;
+	}@else if $media == tablet{
+    width: 85%;
+  }@else if $media == mobile {
+    width: 90%;
+  }
+}
+
+//For About me page
+@mixin imgSize($val) {
+	width: pxToRem($val);
+	height: pxToRem($val);
+}
+//after & before shows
+@mixin afterbf {
+	display: block;
+	content: ' ';
+}
+//float classes
+.float-right{
+	float: right;
+}
+.float-left{
+	float: left;
+}
+
+//.clearfix
+.clearFix{
+	&::after{
+		content: ' ';
+		display: block;
+		clear: both;
+	}
+}
+
+// scale func to math golden ratio 
+@function scaleMath($n) {
+	@if $n == 0 {@return 1;}
+	@if $n == 1 {@return 1.618;}
+	@if $n == -1 {@return 0.618;}
+
+	@if $n > 0{
+		@return scaleMath($n - 1) + scaleMath($n - 2);
+	}
+	@if $n < 0 {
+		@return scaleMath($n + 2) - scaleMath($n + 1);
+	}
+}
+
+// this append rem unit 
+@function scaleRem($val){
+  @return #{scaleMath($val)}rem;
+}
+

@@ -1,0 +1,653 @@
+/* struct.scss */
+@import "style";
+@import "mixin";
+
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+html{line-height: 1.8; font-size: 100%; }
+input {
+  &:after{
+      box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;}
+}
+//====
+//Body
+@mixin body {
+  font-family: IRAN-web;
+  height: 100%;
+  max-width:100%;
+  direction: rtl;
+  color: $text-color;
+  // font-size: 100%;
+  h1,h2,h3,h4,h5,h6{
+    font-weight: 600;
+  }
+  p{
+      font-weight: normal;
+      -webkit-text-size-adjust: 95%;
+  }
+  a{
+      text-decoration: none;
+  }
+  @include tr(background-color .3s ease);
+}
+
+// =================
+// BLOG FRONT PAGE
+@mixin cn-main($media){
+  @if $media == normal{
+    width: 35%;
+    margin: 0 auto;
+    margin-top: 6%;
+    margin-top: scaleRem(3);
+  }
+  @else if $media == wide {
+    width:50%;
+  }
+  @else if $media == medium{
+    width: 70%;
+  }
+  @else if $media == mobile{
+    width: 80%;
+    margin-top: scaleRem(1);
+  }
+  // horizontal aligning problam!
+  @else if $media == height{
+    margin-top: scaleRem(4);
+  }
+}
+//=================
+//Bio in Front Page
+@mixin bio($media){
+  @if $media == normal{
+    width: 20rem;
+    margin: 0 auto;
+  }
+  @else if $media == mobile {
+    width: 100%;
+  }
+}
+//=================
+//LOGO TYPE
+@mixin logo($media) {
+  @if $media == normal{
+    .logo{
+      position: relative;
+      right: -1.07rem;
+        li{
+          display: inline-block;;
+        }
+        img{
+          position: relative;
+          top: 0.3rem;
+          right: 2.9rem;
+          width: 6rem;
+          z-index: 9999;
+
+          box-shadow: 0rem 0rem 1rem 0rem rgba(48,48,48,.3);
+          @include border-radius(50%);
+          @include borderThin($four-color);
+        }
+        .name{
+          position: relative;
+          top: -1rem;
+          padding: 0.2rem 0.6rem;
+          padding-right: 2.4rem;
+          font-size: scaleRem(1);
+          color: $eight-color;
+          @include borderThin($four-color);
+        }
+      }
+}
+@else if $media == mobile{
+  .logo{
+      padding-right: 0;
+      li{
+        display: block;
+      }
+      img{
+        display: block;
+        margin:0 auto;
+        width: 6.5rem;
+        top: 0rem;
+        right: 0;
+        margin: 0 auto;
+        margin-bottom: 0.2rem;
+      }
+      .name{
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        top: 0;
+        padding: 0.1rem 0.1rem;
+        padding-right: 0.1rem;
+      }
+    }
+ }
+ @else if $media == small{
+   .logo{
+       .name{
+         width: 90%;
+       }
+      }
+  }
+}
+//Biography
+@mixin biography($media){
+  @if $media == normal{
+    .biography{
+      position: relative;
+      margin-right: 5rem;
+      margin-top: .8rem;
+      @include borderTr(absolute,auto,-0.9rem,0.9rem,0.9rem);
+      li{
+        font-size: scaleRem(1);
+        padding-right: 0.5rem;
+        padding-bottom: scaleRem(-3);
+      }
+      a{
+        @include tr(color 0.4s ease);
+        @include hover-links;
+      }
+    }
+  }
+  @else if $media == mobile {
+    .biography{
+        margin-right: 0;
+        text-align: center;
+        border-right: 0;
+        &:before{
+            display: none;
+        }
+        li{
+          padding-right: 0;
+        }
+      }
+    }
+}
+
+//============
+//  navigation
+@mixin navigation($media) {
+  @if $media == normal{
+    float: right;
+    @include navigationStyle(normal) ;
+    font-size :scaleRem(0);
+    ul{
+      .selected-li{a{
+        padding-right: 0 ;
+      }}
+      li{
+        float: right;
+        a{
+          padding: 0 1rem 0.5rem 1rem;
+        }
+      }
+    }
+
+  }
+  @else if $media == mobile {
+    width: 100%;
+    ul{
+      display: block;
+      text-align: center;
+      @include navigationStyle(mobile);
+      li{
+        float: none;
+        display: inline-block;
+        a{
+          padding: 0 0.5rem ;
+        }
+      }
+
+    }
+  }
+}
+//===========
+// icon-nav
+@mixin icon-nav($media) {
+  @if $media == normal {
+    float: left;
+    position: relative;
+    top: 0.5rem;
+    @include icon-nav-style(normal) ;
+      li{
+        display: inline-block;
+        padding: 0 pxToRem(2.5);
+      }
+      .pg-title{
+        span{
+          position: relative;
+          top: pxToRem(-5);
+          padding:0 pxToRem(2);
+          height: 1.6rem;
+        }
+      }
+  }@else if $media == mobile{
+      @include icon-nav-style(mobile) ;
+    width: 100%;
+    ul{
+      display: block;
+      text-align: center;
+    }
+  }
+}
+//=============
+//About me Page
+@mixin aboutme($media) {
+  @if $media == normal {
+    @include aboutmeStyle(normal);
+    margin-bottom: scaleRem(1);
+    .headerAboutme{
+      .imgAboutme{
+        @include imgSize(180);
+        margin: 0 auto;
+      }
+      h3,p{
+        width: pxToRem(200);
+        margin: 0 auto;
+        font-size: scaleRem(0);
+      }
+      h3{
+        padding-top: scaleRem(1);
+      }
+    }
+    .contentAboutme{
+      margin: 0 auto;
+      padding-top: pxToRem(30);
+      font-size: scaleRem(0);
+      p{
+        font-size: scaleRem(0);
+        margin: scaleRem(0) 0;
+      }
+      h3{
+        font-size: scaleRem(1);
+      }
+    }
+  }@else if $media == tablet {
+  }@else if $media == mobile{
+    @include aboutmeStyle(mobile);
+    .headerAboutme{
+      .imgAboutme{
+        @include imgSize(150);
+        margin: 0 auto;
+      }
+      h3,p{
+        width: pxToRem(190);
+      }
+    }
+    .contentAboutme{
+      width: 98%;
+    }
+  }
+}
+
+//margin navigation bar
+@mixin nav-margin($media) {
+  @if $media == normal{
+    padding-bottom: scaleRem(4);
+  }@else if $media == mobile {
+    padding-bottom: scaleRem(3);
+  }
+}
+//=========
+//Blog Page
+@mixin post($media){
+  @if $media == normal{
+    .post-header{
+      color: $text-color;
+      font-size: scaleRem(1);
+    }
+    h1{font-size: scaleRem(2); line-height: 1.3;} 
+    h2{display: none; font-size: scaleRem(1);} 
+    h3{font-size: scaleRem(0); margin: .5rem 0;}
+    .subHeader{
+      font-size: scaleRem(-1);
+      color: $six-color;
+      .comma{
+        color: $second-color;
+        font-size: pxToRem(12);
+      }
+      .posSub{
+        position:relative;
+        top: - scaleRem(1);
+      }
+      .author{
+        display: inline-block;
+        padding-right: 1rem;
+        &:before{
+          display: block;
+          content: ".";
+          font-size: scaleRem(0);
+          width: 1rem;
+          color: $second-color;
+          position: relative;
+          top: 1.2rem;
+          left: 1rem;
+          text-align: center;
+        }
+      }
+    }
+    p{
+      font-size: scaleRem(0);
+      line-height: 2; 
+    }
+
+    blockquote{
+      margin: scaleRem(1) scaleRem(3) scaleRem(1) 0;
+      padding: 0 scaleRem(1);
+      @include blockquteStyle;
+      p{
+        padding-right:scaleRem(1);
+        padding-bottom: scaleRem(1);
+        font-size: 1.318rem;
+      }
+    }
+    b,strong{
+      font-weight: 600 !important;
+    }
+    img{
+      display: block;
+      max-width: 100%;
+      margin: .618rem auto;
+    }
+    a{
+      @include hover-links;
+    }
+    ul{
+      list-style-type: arabic-indic;
+      padding-right: 2.618rem;
+    }
+  }@else if $media == mobile{
+    html{
+      font-size: 0%;
+    }
+    h1{
+      font-size: scaleRem(1);
+    }
+    blockquote{
+      margin-right: scaleRem(1);
+    }
+  }
+}
+//Post-except
+@mixin post-except($media) {
+  @if $media == normal {
+    &:after{
+      display: block;
+      content: "...";
+      text-align: center;
+      color: $second-three-color;
+      font-size: scaleEm(2);
+      padding: scaleRem(-3) 0;
+    }
+    &:last-of-type{
+      margin-bottom: scaleRem(1);
+      &:after{
+        display: none;
+      }
+    }
+  }
+}
+@mixin postHtml($media){
+  @if $media == normal {
+    .subHeader{
+      margin-top: 1rem;
+    }
+    p{
+      margin: scaleRem(0) 0;
+    }
+    h2{
+      display: block !important;
+    }
+  }
+
+}
+
+
+//continue
+@mixin continue($media) {
+  @if $media == normal{
+    .continue{
+        display: inline-block;
+        width: 4em;
+        height: 2em;
+        @include continueBtn;
+        font-size :scaleEm(0);
+        margin-top: scaleEm(-1);
+    }
+  }
+  @else if $media == tablet{
+    .continue{
+      &:after{
+        display: none;
+      }
+    }
+  }
+  @else if $media == mobile{
+    font-size: 14px;
+    .continue{
+      display: block;
+      margin-top: scaleEm(0);
+    }
+  }
+}
+
+//============
+// Single Page
+@mixin singlePage($media) {
+  @if $media == normal {
+    width: 90%;
+    @include postSingelStyle;
+    p{
+      font-size: 1.1rem;
+    }
+    blockquote{
+      display: inline-block;;
+      margin-top: 1rem;
+      margin-right: 10rem;
+      padding: 0 1rem;
+    }
+    img{
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1.5rem auto;
+    }
+  }
+  @else if $media ==  medium{
+    width: 100%;
+    p{
+      padding: 0 1rem;
+    }
+    img{
+      max-width: 95%;
+    }
+  }
+  @else if $media == tablet{
+    blockquote{
+      display: block;
+      margin-right: 1rem;
+    }
+    p{
+      padding:0 0.5rem;
+    }
+  }
+  @else if $media == mobile {
+    width: 100%;
+    h2,.tags,p{
+        text-align: right !important;
+        padding: 0 0.5rem !important;
+    }
+    p{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    blockquote{
+        background: #fafafa;
+      }
+  }
+}
+//======
+//Footer
+@mixin footer($media) {
+  @if $media == normal {
+    @include footerStyle;
+    width: 100%;
+  
+    .br{
+        width: 80%;
+        height: 0.06rem;
+        margin: 0 auto;
+    }
+    ul{
+        position: relative;
+        top: -1rem;
+        width: 16%;
+        margin: 0 auto;
+        text-align: center;
+        
+        li{
+            display: inline-block;
+            font-size: 0.8055rem;
+            margin:0 6% ;
+        }
+      }
+      .copy{
+          position: relative;
+          top: -0.7rem;
+          text-align: center;
+          p{
+              font-size: 0.6805rem;
+              font-weight: 600;
+              color:$nine-color;
+              padding-left: 1.4rem;
+          }
+
+      }
+    }
+    @else if $media == wide{
+      ul{
+        width: 25%;
+      }
+    }
+    @else if $media == medium {
+      ul{
+        width: 35%;
+      }
+    }
+    @else if $media == mobile{
+      ul{
+        width: 40%;
+      }
+      .copy{
+        p{
+          padding-left:0rem;
+        }
+      }
+    }
+    @else if $media == small{
+      li{
+        &:nth-child(1){
+        width: 29%;
+        }
+      }
+    }
+    @else if $media == xsmall{
+      top: 8rem ;
+    }
+
+}
+//frontPage Fotter
+@mixin front-page-footer($media) {
+  @if $media == normal {
+      position: absolute;
+      bottom: 1.5rem;
+  }
+  @else if $media == height{
+      position: relative;
+      bottom: auto;
+      top: 5rem;
+  }
+}
+//blogFooter
+@mixin blog-footer($media) {
+  @if $media == normal{
+        position: relative ;
+        top: 5rem;
+        bottom: 0;
+  }
+  @else if $media == tablet{
+        top:1rem !important;
+        padding-bottom: 3rem;
+  }
+}
+@mixin footer-blog($media){
+  @if $media == normal{
+    @include footer-blog-style(normal);
+
+    margin-top:5rem;
+    .main-width{
+      padding:1rem 0;
+    }
+    .lessIsBetter{
+      position: relative;
+      top: pxToRem(4);
+    }
+  }@else if $media == mobile{
+    @include footer-blog-style(mobile);
+    [class *= float-]{
+      float: none;
+      display: block;
+      text-align: center;
+    }
+    .lessIsBetter{
+      top: 0;
+    }
+  }
+}
+.footer-blog{
+  background: $one-color; border-top: 1px solid $two-color;
+}
+
+@mixin nightShift($media) {
+  @if $media == normal{
+    @include nightswitchStyle();
+    .switch{
+      position: relative;
+      top: .125rem;
+      background-color: transparent;
+
+      width: 2.4rem;
+      height:1.4rem;
+      cursor:pointer;
+      input{
+        display: none;
+        &:checked + .slide:after{
+          margin-right: .2rem;
+        }
+      }
+    }
+    .slide{
+      width: 2.4rem;
+      height: 1.4rem;
+      @include border-radius(.7rem);
+    }
+    .slide:after{
+      position: relative;
+      display: block;
+      margin-right: 1.1rem;
+      top: .150rem;
+      content: " ";
+      background:#fff;
+      width: 1.1rem;
+      height: 1.1rem;
+      @include border-radius(50%);
+      @include tr(margin-right .4s cubic-bezier( 0.175, 0.885, 0.320, 1.275));
+    }
+  }
+}

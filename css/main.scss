@@ -1,0 +1,142 @@
+---
+---
+@import "reset";
+@import "struct";
+@import "ficon";
+@import "syntax";
+
+body{@include body;}
+
+
+.cn-main{@include cn-main(normal);}
+
+#bio{@include bio(normal); @include logo(normal); @include biography(normal);}
+
+#post{@include post(normal);  @include continue(normal); }
+
+.post-except{@include post-except(normal);}
+
+.postHtml{@include postHtml(normal);}
+
+.nav-margin{@include nav-margin(normal);}
+
+#aboutme{@include aboutme(normal);}
+
+//main-width for header
+.main-width{@include main-width(normal);}
+
+#navigation{@include navigation(normal);}
+.icon-nav{@include icon-nav(normal);}
+
+#footer{@include footer(normal);}
+
+.blog-footer{@include blog-footer(normal);}
+
+.front-page-footer{@include front-page-footer(normal);}
+
+#footer-blog{@include footer-blog(normal);}
+
+@include nightShift(normal);
+@include nightContent();
+
+.comments_disqus{@include comments_disqus()};
+//wide
+@media screen and (max-width:75em){
+  .cn-main{@include cn-main(wide);}
+
+  .main-width{@include main-width(wide);}
+
+  #post{@include post(wide); }
+  
+  // .post-except{@include post-except(wide);}
+
+  #navigation{@include navigation(wide);}
+
+  #footer{@include footer(wide);}
+}
+//medium
+@media screen and (max-width:62.375em){
+  .cn-main{@include cn-main(medium);}
+
+  .main-width{@include main-width(medium);}
+
+  #post{@include post(medium);  @include continue(medium); }
+
+  // .post-except{@include post-except(medium);}
+
+
+
+  #footer{@include footer(medium);}
+
+}
+
+//tablet
+@media screen and (max-width:48.1em){
+  html{line-height: 1.7;}
+
+  #bio{@include bio(tablet); @include logo(tablet); @include biography(tablet);}
+
+  .main-width{@include main-width(tablet);}
+
+  #navigation{@include navigation(tablet);}
+
+  #footer{@include footer(tablet);}
+
+  .blog-footer{@include blog-footer(tablet);}
+
+  #aboutme{@include aboutme(tablet);}
+}
+//mobile
+@media screen and (max-width:37.5em){
+
+  html{font-size: 90%;}
+
+  .cn-main{@include cn-main(mobile);}
+
+  #bio{@include bio(mobile); @include logo(mobile); @include biography(mobile);}
+
+  .main-width{@include main-width(mobile);}
+
+  #navigation{@include navigation(mobile);}
+
+  .nav-margin{@include nav-margin(mobile);}
+
+  .icon-nav{@include icon-nav(mobile);}
+
+  #post{@include post(mobile);  @include continue(mobile); }
+
+  .post-except{@include post-except(mobile);}
+
+
+
+  #footer{@include footer(mobile);}
+
+  #footer-blog{@include footer-blog(mobile);}
+
+  #aboutme{@include aboutme(mobile);}
+}
+
+//small
+@media screen and (max-width:25rem){
+  #bio{@include bio(small); @include logo(small);}
+
+  #footer{@include footer(small);}
+}
+
+//xsmall
+@media screen and (max-width:20rem){
+  #footer{@include footer(xsmall);}
+}
+//Height settings
+@media screen and (max-height:600px){
+  .front-page-footer{@include front-page-footer(height);}
+}
+
+@media screen and (min-height:650px){
+  .cn-main{@include cn-main(height);}
+}
+// @media screen and (min-width:1440px){
+// 	html{
+// 		font-size: 150% ;
+// 	}
+// }

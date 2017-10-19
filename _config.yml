@@ -1,0 +1,34 @@
+
+name: رضا خسروشاهی
+author: رضا خسروشاهی
+description: سلام من رضا خسروشاهی هستم طراح و توسعه دهنده رابط کاربری :)
+title:  خانه رضا خسروشاهی
+url: http://reza.blue
+
+image: img/RZ.jpg
+
+permalink: /:title/
+
+scusername: rzkhosroshahi
+
+sass:
+  style: :compressed
+  sass_dir: _sass
+
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
+  
+  
+# Handling Reading
+encoding:       "utf-8"
+include:        [".htaccess", "CNAME", "README.md"]
+keep_files:     [".git", "assets"]
+exclude:        ["assets", "node_modules", "gulpfile.js", "package.json", "bower.json", "webpack.config.js"]
+
+gems:
+  - jekyll-sitemap

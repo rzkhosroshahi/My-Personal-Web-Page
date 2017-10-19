@@ -1,0 +1,419 @@
+/* style.scss */
+@import 'mixin';
+$base-color:#fff;
+$second-color:#42A5F5;//400bood
+$second-one-color:#BBDEFB;
+$second-one-color-op: #c9e4fa;
+$second-three-color:#64B5F6;
+$second-seven-color:#1976D2;
+$second-six-color:#039BE5;
+
+//Palatte
+$one-color:#F5F5F5;
+$two-color:#EEEEEE;
+$three-color:#E0E0E0;
+$four-color:#BDBDBD;
+$main-color:#9E9E9E;
+$six-color:#757575;
+$seven-color:#616161;
+$eight-color:#424242;
+$nine-color:#212121;
+$text-color:#424242;
+$hover-link:#42A5F5;
+
+$nav-color:rgba(238,238,238 ,0.9);
+$link-post:#673AB7;
+//transition mixin
+@mixin tr($arg...){
+  -webkit-transition: $arg;
+     -moz-transition: $arg;
+      -ms-transition: $arg;
+       -o-transition: $arg;
+          transition: $arg;
+}
+@mixin borderTr($ps,$width,$right,$brtop,$brRight){
+  border-right: .3rem solid $four-color;
+  &:before{
+    @if $ps == absolute{
+      position: absolute;
+    }
+    @else if $ps == relative {
+      position: relative;
+    }
+      width:$width;
+      right: $right;
+      content: ' ';
+      display:block;
+      border-top:$brtop solid $second-color;
+      border-right:$brRight solid transparent;
+  }
+}
+@mixin borderThin($color) {
+  border: pxToRem(1) solid $color;
+}
+@mixin hover-linksbr {
+  &:hover,&:focus{
+      color: $hover-link;
+      border-bottom: .1rem dotted  $hover-link;
+  }
+}
+
+@mixin hover-links(){
+  color: $six-color;
+  border-bottom: pxToRem(1) solid $three-color;
+  &:hover,&:focus{
+      color: $second-seven-color;
+      border-color: $second-seven-color;
+  }
+}
+@mixin hover-color($color) {
+  &:hover,&:focus{
+      color: $color;
+  }
+}
+//continu Button
+@mixin continueBtn{
+  text-align: center;
+  // background: #fff;
+  color: $second-six-color;
+  @include borderThin($second-six-color);
+  @include tr(border 0.4s ease , color 0.4s ease 0.4s);
+  &:hover,&:focus{
+      border: 0.1rem solid $second-one-color;
+      color: $main-color;
+  }
+
+}
+
+//navigation
+@mixin navigationStyle($media) {
+  @if $media == normal {
+    a{
+      color: $text-color;
+      border-bottom: 0.1rem solid $one-color;
+      @include tr(color 0.5s ease);
+      @include tr(border-bottom 0.5s ease);
+      &:hover,&:focus,&:active{
+        border-bottom: 0.1rem solid $second-six-color;
+        color: $second-six-color;
+      }
+    }
+  }
+  @else if $media == mobile {
+    .selected-li{
+        a{
+          font-size: pxToRem(15);
+          border: 0;
+             &:hover,&:focus{border:0;}
+         }
+     }
+    a{
+      font-size: pxToRem(15);
+      border: 0;
+      &:hover,&:focus{border:0;}
+    }
+  }
+}
+//icon-nav style
+@mixin icon-nav-style($media){
+    @if $media == normal{
+      font-family: IRAN-web !important;
+      li {
+        span{
+          font-size: pxToRem(20);
+        }
+      }
+      a{
+        color: $six-color;
+        &:hover,&:focus{
+          color: $second-six-color;
+        }
+      }
+      .github{
+        span{
+          font-size: pxToRem(22);
+        }
+      }
+      .pg-title{
+        span{
+          font-size: pxToRem(12.5);
+          color: $second-three-color;
+          border: pxToRem(1) solid $three-color;
+          @include border-radius(pxToRem(2)) ;
+        }
+      }
+    }@else if $media == mobile {
+      li{
+        span{
+          font-size: pxToRem(22);
+        }
+      }
+      .github{
+        span{
+          font-size: pxToRem(24);
+        }
+      }
+      .pg-title{
+        span{
+          font-size: pxToRem(12.5);
+        }
+      }
+  }
+}
+//Post Single page
+@mixin postSingelStyle {
+  p{
+    color: $text-color;
+    a{
+      color: $link-post;
+      border-bottom:1rem dotted $link-post;
+      @include tr(all 0.4s ease);
+      @include hover-linksbr;
+    }
+  }
+  blockquote{
+    border-right: 0.1rem solid $four-color ;
+    color: $six-color;
+      &:before{
+          content:"\275D";
+          color: $second-three-color;
+          font-size: 3rem;
+      }
+  }
+
+}
+@mixin blockquteStyle {
+  // border-right: 0.1rem solid $four-color ;
+  color: $text-color;
+    &:before{
+        content:"\275D";
+        color: $second-one-color;
+        font-size: 2.618rem;
+        display: inline-block;
+        width: 2.618rem;
+        height: 0;
+        text-align: center;
+    }
+}
+
+@mixin imgAboutme($media) {
+  @if $media == normal {
+    background: $text-color;
+    z-index:4444;
+    @include border-radius(50%);
+    @include tr(background 0.3s ease);
+    &::after{
+      @include imgSize(180);
+      @include afterbf;
+      background: url('../img/aboutme.png') no-repeat;
+      background-size: cover;
+      z-index: 9999 ;
+    }
+    &::before{
+      @include afterbf;
+      @include imgSize(190);
+      @include border-radius(50%);
+      float: right;
+      position: relative;
+      top: pxToRem(-6);
+      right: pxToRem(-6);
+      border: pxToRem(1) solid $second-one-color;
+    }
+    &:hover,&:focus{
+      background: $second-seven-color;
+    }
+  }@else if $media == mobile{
+    &::after{
+      @include imgSize(150);
+    }
+    &::before{
+      @include imgSize(160);
+      top: pxToRem(-6);
+      right: pxToRem(-6);
+
+    }
+  }
+}
+//============
+//Aboutme Page
+@mixin aboutmeStyle($media){
+  @if $media == normal {
+    .headerAboutme{
+      .imgAboutme{
+        @include imgAboutme(normal);
+      }
+      h3{
+        color: $text-color;
+        span{
+          color: $second-three-color;
+        }
+      }
+      p{
+        color: $text-color;
+        &:last-of-type{
+          border-left: pxToRem(1) solid $second-three-color;
+        }
+      }
+    }
+    .contentAboutme{
+      p{
+        &::after{
+          @include afterbf;
+          display: none;
+          content: "...";
+          width: pxToRem(50);
+          color: $second-seven-color;
+          font-size: pxToRem(25);
+          margin: pxToRem(0.5) auto;
+        }
+        &:last-of-type
+        {
+          &::after{
+            display: none;
+          }
+        }
+        .en-link{
+          font-family:sans-serif;
+        }
+        a{
+          color: $six-color;
+          border-bottom: pxToRem(1) solid $three-color;
+          @include tr(all 0.2s ease);
+          &:hover,&:focus{
+            color: $second-seven-color;
+            border-color: $second-seven-color;
+          }
+        }
+      }
+    }
+  }@else if $media == mobile{
+    .headerAboutme{
+      .imgAboutme{
+        @include imgAboutme(mobile);
+      }
+    }
+  }
+}
+
+//footer
+@mixin footerStyle {
+    .br{
+      background: $four-color;
+      opacity: 0.3;
+    }
+    ul{
+      background: $base-color;
+      li{
+        color: $text-color;
+      }
+      a{
+        color: $text-color;
+        @include tr(all 0.4s ease);
+      }
+      a.tw{
+        @include hover-color(#55acee);
+      }
+      a.fb{
+        @include hover-color(#3b5999);
+      }
+      a.gh{
+        @include hover-color(#131418);
+      }
+    }
+}
+
+@mixin footer-blog-style($media){
+  @if $media == normal{
+    // font-size: 14px;
+    p{
+      color: #424242;
+      // font-size: pxToRem(13);
+      font-size: scaleEm(0);
+    }
+    span{
+      color: $second-one-color;
+      color: #424242;
+    }
+    .icon-love{
+      color: #e53935;
+      margin-left: 0.5rem;
+    }
+    a{
+      color: $text-color;
+      border-bottom: pxToRem(1) solid $text-color;
+      &:hover,&:focus{
+        color: $second-color;
+        border-color: $second-color;
+      }
+    }
+    .lessIsBetter{
+      font-size: scaleEm(0);
+    }
+  }@else if $media == mobile{
+    // text-align: center;
+    p{
+      font-size: pxToRem(12);
+    }
+    a{
+      font-size: pxToRem(14);
+    }
+  }
+}
+@mixin nightswitchStyle(){
+      .switch{
+        @include prefix((
+           user-select:none
+        ),webkit moz o);
+      input{
+        &:checked + .slide{
+          background: #039BE5;  
+        }
+      }
+    }
+    .slide{
+      background:$three-color;
+    }
+}
+@mixin nightContent(){
+  .night{
+    background-color:  #141d26;
+    p,.icon-nav a,#navigation a,
+    #footer-blog a,#footer-blog span,
+    .subHeader span ,.subHeader a{
+      color: $two-color !important;
+    }
+    h1,h2,h3,h4,h5{
+      color:$three-color !important;
+    }
+    .postHtml{
+      ul{
+        color:#fff;
+      }
+    }
+    mark{
+      background:#21303f;
+      color:#fff;
+    }
+    #footer-blog{
+      background-color:  #141d26;
+    }
+    #navigation a{
+      border-color: #1976D2;
+      &:hover{
+        border-color:$one-color;
+      }
+    }
+    .author{
+      color: $four-color;
+    }
+    
+
+  }
+}
+@mixin comments_disqus(){
+  font-family: 'IRAN-web';
+  font-weight: 600;
+  h3{
+    padding: scaleRem(1) 0 ;
+  }
+}

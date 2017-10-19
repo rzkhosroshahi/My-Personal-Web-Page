@@ -1,0 +1,17 @@
+---
+layout: blog
+title: بلاگ
+---
+{% for post in site.posts %}
+     <article id="post" class="post-except main-width">
+        <h3 class="post-header">{{ post.title }}</h3>
+        <div class="subHeader">
+             <div class="posSub">
+            <span class="day">{{ post.date | date_to_string }}</span>
+            <div class="author">نوشته <a href="">{{ site.author }}</a></div>
+        </div>
+        </div><!--date-->
+          {{ post.excerpt }}
+           <a href="{{ site.baseurl }}{{ post.url }}" class="continue">ادامه ... <span></span></a>
+     </article>
+{% endfor %}
