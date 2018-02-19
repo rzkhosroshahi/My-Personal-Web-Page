@@ -1,30 +1,26 @@
+(function() {
     const body = document.querySelector('body');
     const slide = document.querySelector('.slide');
     const checkBox = document.querySelector(".checkbox");
+    let initialState = JSON.parse(localStorage.getItem('rezaBlueNight')) || localStorage.setItem('rezaBlueNight', false);
+    const className = 'night';
+    
+    // window load make night shift theme
+    if(initialState) {
+        body.classList.add(`${className}`);
+        checkBox.checked = initialState;
+    }
 
-    const checkNightShift = () => {
-        let nightState = JSON.parse(localStorage.getItem('rezaBlueNight'));
-        if(nightState)  {
-            body.classList.add('night');
-            checkBox.checked = nightState;
-        }
-        else {
-            body.classList.remove('night');
-            checkBox.checked = nightState;            
-        }
-    }; 
+    // night slide 
+    const nightSlide = () => {
+        const currentState = !JSON.parse(localStorage.getItem('rezaBlueNight'));
+        localStorage.setItem('rezaBlueNight', currentState);
 
-    checkNightShift(); 
-
-    const nightSlide = (e) =>{
-       if(e.target.checked) { 
-           localStorage.setItem('rezaBlueNight',true);
-           checkNightShift();
+        if (currentState !== initialState) {
+            body.classList.toggle(`${className}`);
+            checkBox.checked = currentState;
         }
-       else if(!e.target.checked) {
-           localStorage.setItem('rezaBlueNight', false);
-           checkNightShift();
-       }
     };
 
-    window.addEventListener('click',(e) => {if(e.target === checkBox) nightSlide(e)}); 
+    checkBox.addEventListener('change', (e) => e.target === checkBox && nightSlide()); 
+}());
