@@ -603,6 +603,13 @@ input {
     @include footer-blog-style(normal);
     flex-shrink: 0;
     margin-top:5rem;
+  
+    .footer-info {
+      display: flex;
+    }
+    .rss {
+      margin-right: 0.5rem;
+    }
     .main-width{
       padding:1rem 0;
     }
