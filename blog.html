@@ -4,7 +4,7 @@ title: بلاگ
 ---
 {% for post in site.posts %}
      <article id="post" class="post-except main-width">
-        <h3 class="post-header">{{ post.title }}</h3>
+        <a href="{{ site.baseurl }}{{ post.url }}"><h3 class="post-header">{{ post.title }}</h3></a>
         <div class="subHeader">
              <div class="posSub">
             <span class="day">{{ post.date | date_to_string }}</span>
@@ -12,6 +12,5 @@ title: بلاگ
         </div>
         </div><!--date-->
           {{ post.excerpt }}
-           <a href="{{ site.baseurl }}{{ post.url }}" class="continue">ادامه ... <span></span></a>
      </article>
 {% endfor %}

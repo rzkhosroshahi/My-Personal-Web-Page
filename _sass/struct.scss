@@ -7,7 +7,7 @@
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
 }
-html{line-height: 1.8; font-size: 100%; }
+html{line-height: 1.8; font-size: 100%; height: 100%;}
 input {
   &:after{
       box-sizing: border-box;
@@ -21,6 +21,8 @@ input {
   height: 100%;
   max-width:100%;
   direction: rtl;
+  display: flex;
+  flex-direction: column;
   color: $text-color;
   // font-size: 100%;
   h1,h2,h3,h4,h5,h6{
@@ -242,6 +244,7 @@ input {
   @if $media == normal {
     @include aboutmeStyle(normal);
     margin-bottom: scaleRem(1);
+    flex: 1 0 auto;
     .headerAboutme{
       .imgAboutme{
         @include imgSize(180);
@@ -301,6 +304,13 @@ input {
     .post-header{
       color: $text-color;
       font-size: scaleRem(1);
+      @include tr(color 0.2s ease);
+
+      &:hover, 
+      &:focus {
+        color: $second-seven-color;
+        // color: rgba($text-color, 0.7);
+      }
     }
     h1{font-size: scaleRem(2); line-height: 1.3;} 
     h2{display: none; font-size: scaleRem(1);} 
@@ -377,6 +387,7 @@ input {
 //Post-except
 @mixin post-except($media) {
   @if $media == normal {
+    flex: 1 0 auto;
     &:after{
       display: block;
       content: "...";
@@ -395,6 +406,7 @@ input {
 }
 @mixin postHtml($media){
   @if $media == normal {
+    flex: 1 0 auto;
     .subHeader{
       margin-top: 1rem;
     }
@@ -589,7 +601,7 @@ input {
 @mixin footer-blog($media){
   @if $media == normal{
     @include footer-blog-style(normal);
-
+    flex-shrink: 0;
     margin-top:5rem;
     .main-width{
       padding:1rem 0;
